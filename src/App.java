@@ -1,4 +1,6 @@
 
+import java.awt.Color;
+
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -15,6 +17,7 @@ import UserInterface.Form.IngresarPrograma;
 import UserInterface.Form.SplashScreenForm;
 import DataAccess.PersonaDAO;
 import DataAccess.UsuarioDAO;
+import UserInterface.Form.Guitarra;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -78,17 +81,17 @@ public class App {
             //     System.out.println("Hubo un problema al registrar el usuario.");
             // }
 
-
-        FlatLightLaf.setup();
-        FlatLightLaf.supportsNativeWindowDecorations();
-        try {
-                UIManager.setLookAndFeel(new FlatAtomOneDarkIJTheme());
-            } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        } 
+            FlatLightLaf.setup();
+            FlatLightLaf.supportsNativeWindowDecorations();
+            try {
+                    UIManager.setLookAndFeel(new FlatAtomOneDarkIJTheme());
+                } catch (UnsupportedLookAndFeelException e) {
+                e.printStackTrace();
+            } 
         
         // SplashScreenForm.show();
-        new IngresarPrograma();
-    
+        // new IngresarPrograma();
+        SwingUtilities.invokeLater(Guitarra::new);
     }
+    
 }
