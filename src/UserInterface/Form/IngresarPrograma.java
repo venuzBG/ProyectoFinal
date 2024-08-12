@@ -14,12 +14,14 @@ public class IngresarPrograma extends JFrame {
     private JTextField usuarioField;
     private JPasswordField claveField;
     private Usuario usuario;
+    private GuitarraPantalla pantallaJuego;
 
     public IngresarPrograma() {
         usuario = new Usuario();
 
         // Cargar la imagen de fondo
-        ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/UserInterface/Resource/Img/FondoUsuario.jpg")));
+        ImageIcon imageIcon = new ImageIcon(
+                Objects.requireNonNull(getClass().getResource("/UserInterface/Resource/Img/FondoUsuario.jpg")));
         JLabel background = new JLabel(imageIcon);
         setContentPane(background);
 
@@ -73,7 +75,14 @@ public class IngresarPrograma extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String usuarioText = usuarioField.getText();
                 String claveText = new String(claveField.getPassword());
-                usuario.ingresarDatos(usuarioText, claveText);
+                if (usuario.ingresarDatos(usuarioText, claveText)) {
+                    setVisible(false);
+                    pantallaJuego = new GuitarraPantalla();
+                    pantallaJuego.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuario o clave incorrectos");
+                }
+
             }
         });
 
@@ -98,4 +107,8 @@ public class IngresarPrograma extends JFrame {
         setResizable(false); // Desactivar el redimensionamiento de la ventana
         setVisible(true);
     }
+
+    // public static void main(String[] args) {
+    // IngresarPrograma pantalla = new IngresarPrograma();
+    // }
 }

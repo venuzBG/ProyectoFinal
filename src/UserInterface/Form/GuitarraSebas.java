@@ -5,10 +5,10 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.net.URL;
 
-public class Guitarra extends JFrame {
+public class GuitarraSebas extends JFrame {
     private JTable table;
 
-    public Guitarra() {
+    public GuitarraSebas() {
         // Configuración de la ventana principal
         setTitle("Guitarra");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,9 +28,10 @@ public class Guitarra extends JFrame {
         // Ajustar el tamaño de la ventana al tamaño de la imagen de fondo
         setSize(1400, 900);
 
-        // Primera Parte: Tabla de 11x6 sin encabezados de columna (6 columnas y 11 filas)
+        // Primera Parte: Tabla de 11x6 sin encabezados de columna (6 columnas y 11
+        // filas)
         String[][] data = new String[11][6];
-        String[] columnNames = {"", "", "", "", "", ""}; // Nombres de columnas vacíos
+        String[] columnNames = { "", "", "", "", "", "" }; // Nombres de columnas vacíos
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         table = new JTable(model);
         table.setRowHeight(60); // Aumentar la altura de las filas (ajustado a 60 píxeles)
@@ -108,4 +109,8 @@ public class Guitarra extends JFrame {
         // Hacer visible la ventana
         setVisible(true);
     }
+
+    // public static void main(String[] args) {
+    // Guitarra pantalla = new Guitarra();
+    // }
 }

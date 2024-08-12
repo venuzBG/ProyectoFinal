@@ -14,11 +14,10 @@ public class Usuario {
         usuarioBL = new UsuarioBL();
     }
 
-    public void ingresarDatos(String usuario, String clave) {
+    public boolean ingresarDatos(String usuario, String clave) {
+        boolean usuarioValido = false;
         try {
             List<UsuarioDTO> usuarios = usuarioBL.getAll();
-
-            boolean usuarioValido = false;
 
             for (UsuarioDTO u : usuarios) {
                 if (u.getUsuario().equals(usuario) && u.getClave().equals(clave)) {
@@ -35,33 +34,34 @@ public class Usuario {
         } catch (Exception e) {
             System.out.println("Error al intentar ingresar los datos: " + e.getMessage());
         }
+        return usuarioValido;
     }
 
     public boolean registrarPersona(String nombre, String apellido, String correo, int idSexo, int idLocalidad) {
         PersonaBL personaBL = new PersonaBL();
-        
+
         try {
             // Verificar si el correo ya existe
             if (personaBL.correoExiste(correo)) {
                 System.out.println("Error: ya te has registrado con este usuario.");
                 return false;
             }
-    
+
             PersonaDTO nuevaPersona = new PersonaDTO();
             nuevaPersona.setNombre(nombre);
             nuevaPersona.setApellido(apellido);
             nuevaPersona.setCorreo(correo);
             nuevaPersona.setIdCatalogoSexo(idSexo);
             nuevaPersona.setIdLocalidad(idLocalidad);
-    
+
             boolean registrado = personaBL.add(nuevaPersona);
-    
+
             if (registrado) {
                 System.out.println("Usuario registrado exitosamente.");
             } else {
                 System.out.println("Error al registrar el usuario.");
             }
-            
+
             return registrado;
         } catch (Exception e) {
             System.out.println("Ocurrió un error: " + e.getMessage());
