@@ -1,25 +1,21 @@
 package UserInterface.Form;
 
 import BusinessLogic.Entities.Usuario;
-import UserInterface.CustomerControl.SOButton;
-import UserInterface.CustomerControl.SOJComboBox;
-import UserInterface.CustomerControl.SOJLabel;  // Importa la nueva clase
-import UserInterface.CustomerControl.SOJTextField;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RegistrarDatos extends JPanel {
-    private SOJTextField nombreField;
-    private SOJTextField apellidoField;
-    private SOJTextField correoField;
-    private SOJComboBox<String> paisComboBox;
-    private SOJComboBox<String> ciudadComboBox;
-    private SOJTextField usuarioField;
+    private JTextField nombreField;
+    private JTextField apellidoField;
+    private JTextField correoField;
+    private JComboBox<String> paisComboBox;
+    private JComboBox<String> ciudadComboBox;
+    private JTextField usuarioField;
     private JPasswordField claveField;
     private JPasswordField confirmarClaveField;
-    private SOJComboBox<String> sexoComboBox;
+    private JComboBox<String> sexoComboBox;
 
     public RegistrarDatos() {
         setLayout(new GridBagLayout());
@@ -29,51 +25,51 @@ public class RegistrarDatos extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.WEST;
-        add(new SOJLabel("Nombre:"), gbc);
+        add(new JLabel("Nombre:"), gbc);
 
-        nombreField = new SOJTextField(15);
+        nombreField = new JTextField(15);
         gbc.gridx = 1;
         add(nombreField, gbc);
 
         // Etiqueta y campo de texto para Apellido
         gbc.gridx = 2;
-        add(new SOJLabel("Apellido:"), gbc);
+        add(new JLabel("Apellido:"), gbc);
 
-        apellidoField = new SOJTextField(15);
+        apellidoField = new JTextField(15);
         gbc.gridx = 3;
         add(apellidoField, gbc);
 
         // Etiqueta y campo de texto para Correo
         gbc.gridx = 0;
         gbc.gridy = 1;
-        add(new SOJLabel("Correo:"), gbc);
+        add(new JLabel("Correo:"), gbc);
 
-        correoField = new SOJTextField(15);
+        correoField = new JTextField(15);
         gbc.gridx = 1;
         add(correoField, gbc);
 
         // Etiqueta y cuadro de selección para Sexo
         gbc.gridx = 2;
-        add(new SOJLabel("Sexo:"), gbc);
+        add(new JLabel("Sexo:"), gbc);
 
-        sexoComboBox = new SOJComboBox<>(new String[]{"Masculino", "Femenino", "Otro"});
+        sexoComboBox = new JComboBox<>(new String[]{"Masculino", "Femenino", "Otro"});
         gbc.gridx = 3;
         add(sexoComboBox, gbc);
 
         // Etiqueta y cuadro de selección para País
         gbc.gridx = 0;
         gbc.gridy = 2;
-        add(new SOJLabel("País:"), gbc);
+        add(new JLabel("País:"), gbc);
 
-        paisComboBox = new SOJComboBox<>(new String[]{"Ecuador", "Argentina", "Colombia"});
+        paisComboBox = new JComboBox<>(new String[]{"Ecuador", "Argentina", "Colombia"});
         gbc.gridx = 1;
         add(paisComboBox, gbc);
 
         // Etiqueta y cuadro de selección para Ciudad
         gbc.gridx = 2;
-        add(new SOJLabel("Ciudad:"), gbc);
+        add(new JLabel("Ciudad:"), gbc);
 
-        ciudadComboBox = new SOJComboBox<>();
+        ciudadComboBox = new JComboBox<>();
         gbc.gridx = 3;
         add(ciudadComboBox, gbc);
 
@@ -103,15 +99,15 @@ public class RegistrarDatos extends JPanel {
         // Etiqueta y campo de texto para Usuario
         gbc.gridx = 0;
         gbc.gridy = 3;
-        add(new SOJLabel("Usuario:"), gbc);
+        add(new JLabel("Usuario:"), gbc);
 
-        usuarioField = new SOJTextField(15);
+        usuarioField = new JTextField(15);
         gbc.gridx = 1;
         add(usuarioField, gbc);
 
         // Etiqueta y campo de texto para Clave
         gbc.gridx = 2;
-        add(new SOJLabel("Clave:"), gbc);
+        add(new JLabel("Clave:"), gbc);
 
         claveField = new JPasswordField(15);
         gbc.gridx = 3;
@@ -120,14 +116,14 @@ public class RegistrarDatos extends JPanel {
         // Etiqueta y campo de texto para Confirmar Clave
         gbc.gridx = 0;
         gbc.gridy = 4;
-        add(new SOJLabel("Confirmar Clave:"), gbc);
+        add(new JLabel("Confirmar Clave:"), gbc);
 
         confirmarClaveField = new JPasswordField(15);
         gbc.gridx = 1;
         add(confirmarClaveField, gbc);
 
         // Botón de Confirmar Registro
-        SOButton confirmarRegistroButton = new SOButton("Confirmar Registro");
+        JButton confirmarRegistroButton = new JButton("Confirmar Registro");
         gbc.gridx = 1;
         gbc.gridy = 5;
         gbc.anchor = GridBagConstraints.CENTER;
