@@ -1,5 +1,7 @@
 package DataAccess;
 
+import DataAccess.DTO.UsuarioDTO;
+import Framework.PatException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,9 +11,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
-import DataAccess.DTO.UsuarioDTO;
-import Framework.PatException;
 
 public class UsuarioDAO extends SQLiteDataHelper implements IDAO<UsuarioDTO> {
 
@@ -148,5 +147,38 @@ public class UsuarioDAO extends SQLiteDataHelper implements IDAO<UsuarioDTO> {
         }
         return 0;
     }
+
+    public UsuarioDTO readByUserAndPassword(String usuario, String clave) throws Exception {
+        UsuarioDTO u = new UsuarioDTO();
+        String query = 
+            "SELECT IdUsuario"
+            + " , Usuario"
+            + " , Clave"
+            + " , Estado"
+            + " , FechaCreacion"
+            + " , FechaModifica"
+            + " FROM Usuario"
+            + " WHERE Usuario = ? AND Clave = ? AND Estado = 'A'";
+    
+        try {
+            Connection conn = openConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, usuario);
+            pstmt.setString(2, clave);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                u = new UsuarioDTO(rs.getInt(1), 
+                                   rs.getString(2),  
+                                   rs.getString(3),  
+                                   rs.getString(4),  
+                                   rs.getString(5),  
+                                   rs.getString(6)); 
+            }
+        } catch (SQLException e) {
+            throw new PatException(e.getMessage(), getClass().getName(), "readByUserAndPassword()");
+        }
+        return u;
+    }
+    
 }
 

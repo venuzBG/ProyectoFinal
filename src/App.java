@@ -9,6 +9,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneDarkIJTheme;
 
 import BusinessLogic.PersonaBL;
+import BusinessLogic.Entities.*;
 import BusinessLogic.UsuarioBL;
 import BusinessLogic.Entities.Usuario;
 import DataAccess.DTO.PersonaDTO;
@@ -17,7 +18,6 @@ import UserInterface.Form.IngresarPrograma;
 import UserInterface.Form.SplashScreenForm;
 import DataAccess.PersonaDAO;
 import DataAccess.UsuarioDAO;
-import UserInterface.Form.GuitarraSebas;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -81,7 +81,17 @@ public class App {
         // } else {
         // System.out.println("Hubo un problema al registrar el usuario.");
         // }
+    
 
+                // Cancion service = new Cancion();
+                // Integer idPersona = 1;
+                // String nombre = "Mi Playlist";
+                // String[] canciones = {"Cancion1", "Cancion2", "Cancion3"};
+        
+                // service.CancionGuardarBD(idPersona, nombre, canciones);
+    
+
+        
         FlatLightLaf.setup();
         FlatLightLaf.supportsNativeWindowDecorations();
         try {
@@ -92,7 +102,7 @@ public class App {
 
         SplashScreenForm.show();
         new IngresarPrograma();
-        // SwingUtilities.invokeLater(Guitarra::new);
+        SwingUtilities.invokeLater(Guitarra::new);
     }
 
 }

@@ -1,10 +1,6 @@
 package UserInterface.Form;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.border.Border;
-
-import BusinessLogic.Entities.Guitarra;
+import BusinessLogic.Entities.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,8 +11,20 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.border.Border;
 
 public class MainGuitarraPanel extends JPanel {
+    public int getIdCancionBD() {
+        return IdCancionBD;
+    }
+
+    public void setIdCancionBD(int idCancionBD) {
+        IdCancionBD = idCancionBD;
+    }
+
+    private int IdCancionBD;
     private Guitarra guitarra = new Guitarra();
     private BufferedImage imagen;
     private BufferedImage imagenDeFondo;
@@ -32,7 +40,8 @@ public class MainGuitarraPanel extends JPanel {
     private Border bordeRedondeado = BorderFactory.createLineBorder(new Color(141, 73, 37), 5, true);
     private JScrollPane scrollPane = new JScrollPane(txtCancion);
 
-    public MainGuitarraPanel() {
+    public MainGuitarraPanel(int IdCancionBD) {
+        this.IdCancionBD = IdCancionBD;
         setFocusable(true);
         setSize(900, 800);
         setLayout(null); // Ajusta el espacio entre los botones
@@ -140,9 +149,26 @@ public class MainGuitarraPanel extends JPanel {
         });
 
         btnGuardar.addActionListener((ActionEvent clickEvent) -> {
-            // Lógica para guardar la canción
-            requestFocusInWindow();
+            Cancion service = new Cancion();
+            // Solicitar al usuario el nombre de la canción
+            String nombreCancion = JOptionPane.showInputDialog(this, "Ingrese el nombre de la canción:");
+        
+            // Validar que el nombre no sea nulo o vacío
+            if (nombreCancion != null && !nombreCancion.trim().isEmpty()) {
+                // Obtener los acordes de la canción
+                String[] canciones = guitarra.cancionTemporal.acordesCancion.toArray(new String[0]);
+        
+                // Llamar al método para guardar la canción en la base de datos
+                service.CancionGuardarBD(IdCancionBD, nombreCancion, canciones);
+        
+                // Deshabilitar el botón Guardar hasta que haya nuevos cambios
+                btnGuardar.setEnabled(false);
+                requestFocusInWindow();
+            } else {
+                JOptionPane.showMessageDialog(this, "El nombre de la canción no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         });
+        
 
         btnBorrar.addActionListener((ActionEvent clickEvent) -> {
             guitarra.cancionTemporal.acordesCancion.clear();

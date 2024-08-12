@@ -23,6 +23,7 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
         String query =
          "SELECT IdCancion"
          + " , IdPersona"
+         + " , Nombre"
          + " , Cancion"
          + " , Estado"
          + " , FechaCreacion"
@@ -37,10 +38,11 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
             while (rs.next()) { 
                 c = new CancionDTO(rs.getInt(1) 
                                    ,rs.getInt(2) //IdUsuario
-                                   ,rs.getString(3)  //Cancion
-                                   ,rs.getString(4)  //estado
-                                   ,rs.getString(5)  //FechaCrea
-                                   ,rs.getString(6)); //FechaModifica/
+                                   ,rs.getString(3)  //nombre
+                                   ,rs.getString(4)  //Cancion
+                                   ,rs.getString(5)  //estado
+                                   ,rs.getString(6)  //FechaCrea
+                                   ,rs.getString(7)); //FechaModifica/
             }
             
         } catch (SQLException e) {
@@ -51,11 +53,12 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
 
     @Override
     public boolean create(CancionDTO entity) throws Exception {
-        String query = " INSERT INTO Cancion (IdPersona,Cancion) VALUES (?,?)";
+        String query = " INSERT INTO Cancion (IdPersona,Nombre,Cancion) VALUES (?,?,?)";
         try {
             Connection        conn  = openConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setInt(5, entity.getIdPersona());
+            pstmt.setInt(1, entity.getIdPersona());
+            pstmt.setString(2, entity.getNombre());
             pstmt.setString(3, entity.getCancion());
             pstmt.executeUpdate();
             return true;
@@ -71,6 +74,7 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
         String query = 
         "SELECT IdCancion"
          + " , IdPersona"
+         + " , Nombre"
          + " , Cancion"
          + " , Estado"
          + " , FechaCreacion"
@@ -84,10 +88,11 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
             while (rs.next()) { 
                 CancionDTO s = new CancionDTO(  rs.getInt(1) 
                                                 ,rs.getInt(2) //IdUsuario
-                                                ,rs.getString(3)  //Cancion
-                                                ,rs.getString(4)  //estado
-                                                ,rs.getString(5)  //FechaCrea
-                                                ,rs.getString(6)); //FechaModifica/
+                                                ,rs.getString(3)  //Nombre
+                                                ,rs.getString(4)  //Cancion
+                                                ,rs.getString(5)  //estado
+                                                ,rs.getString(6)  //FechaCrea
+                                                ,rs.getString(7)); //FechaModifica/
                 lts.add(s);
             }
 
@@ -102,14 +107,15 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
     public boolean update(CancionDTO entity) throws Exception {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        String query = "UPDATE Cancion SET IdPersona = ?,Cancion=?,FechaModifica = ? WHERE IdCancion = ?";
+        String query = "UPDATE Cancion SET IdPersona = ?,Nombre = ? ,Cancion=?,FechaModifica = ? WHERE IdCancion = ?";
         try {
             Connection conn = openConnection();     //conectar a BD
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, entity.getIdPersona());
-            pstmt.setString(2, entity.getCancion());
-            pstmt.setString(3, dtf.format(now).toString());
-            pstmt.setInt(4, entity.getIdCancion());
+            pstmt.setString(2, entity.getNombre());
+            pstmt.setString(3, entity.getCancion());
+            pstmt.setString(4, dtf.format(now).toString());
+            pstmt.setInt(5, entity.getIdCancion());
             pstmt.executeUpdate();
             return true;
         } catch (SQLException e) {

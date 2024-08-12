@@ -75,16 +75,20 @@ public class IngresarPrograma extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String usuarioText = usuarioField.getText();
                 String claveText = new String(claveField.getPassword());
-                if (usuario.ingresarDatos(usuarioText, claveText)) {
+                
+                // Usa el método LlevarVariable para obtener el idusuariobl
+                int idusuariobl = usuario.LlevarVariable(usuarioText, claveText);
+        
+                if (idusuariobl != -1) { // Verifica si el ID se obtuvo correctamente
                     setVisible(false);
-                    pantallaJuego = new GuitarraPantalla();
+                    pantallaJuego = new GuitarraPantalla(idusuariobl); // Pasa el ID al siguiente panel
                     pantallaJuego.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(null, "Usuario o clave incorrectos");
                 }
-
             }
         });
+        
 
         // Botón de Registrar
         SOButton registrarButton = new SOButton("Registrar");

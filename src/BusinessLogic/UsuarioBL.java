@@ -1,9 +1,8 @@
 package BusinessLogic;
 
 import DataAccess.DTO.UsuarioDTO;
-import java.util.List;
-
 import DataAccess.UsuarioDAO;
+import java.util.List;
 
 public class UsuarioBL {
     private UsuarioDTO usuario;
@@ -33,6 +32,16 @@ public class UsuarioBL {
     public Integer getRowCount() throws Exception{
         return uDAO.getRowCount();
     }
+
+    public int getIdUsuarioByUserAndPassword(String usuario, String clave) throws Exception {
+        UsuarioDTO usuarioDTO = uDAO.readByUserAndPassword(usuario, clave);
+        if (usuarioDTO != null) {
+            return usuarioDTO.getIdUsuario();
+        } else {
+            throw new Exception("Usuario o clave incorrectos");
+        }
+    }
+    
 
 
 }

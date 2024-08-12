@@ -1,11 +1,10 @@
 package BusinessLogic.Entities;
 
-import java.util.List;
-
 import BusinessLogic.PersonaBL;
 import BusinessLogic.UsuarioBL;
 import DataAccess.DTO.PersonaDTO;
 import DataAccess.DTO.UsuarioDTO;
+import java.util.List;
 
 public class Usuario {
     private UsuarioBL usuarioBL;
@@ -83,5 +82,20 @@ public class Usuario {
             return false;
         }
     }
+
+    public int LlevarVariable(String nombreUsuario, String claveUsuario) {
+        int idusuariobl = -1; // Valor predeterminado en caso de error
+        try {
+            UsuarioBL usuarioBL = new UsuarioBL();
+            idusuariobl = usuarioBL.getIdUsuarioByUserAndPassword(nombreUsuario, claveUsuario);
+            System.out.println("El ID del usuario es: " + idusuariobl);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return idusuariobl;
+    }
+    
+    
+    
 
 }

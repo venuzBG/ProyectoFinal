@@ -28,9 +28,7 @@ public abstract class ProyStyle {
     public static final Cursor CURSOR_DEFAULT = new Cursor(Cursor.DEFAULT_CURSOR); 
     
     public static final URL URL_SPLASH = ProyStyle.class.getResource("/UserInterface/Resource/Gift/K13e.gif");
-    public static final URL URL_LOGO = ProyStyle.class.getResource("/UseInterface/Resource/Img/sailor.png");
-    public static final URL URL_MAIN = ProyStyle.class.getResource("/UseInterface/Resource/Img/Splash.png");
-    public static final URL URL_MENU = ProyStyle.class.getResource("/UserInterface/Resource/Img/Menu.jpeg");
+    
     public static int ALIGNMENT_LEFT;
 
     public static final CompoundBorder createBorderRent(){

@@ -1,10 +1,13 @@
 package UserInterface.Form;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class GuitarraPantalla extends JFrame {
-    public GuitarraPantalla() {
+    
+    private int IdUsuario;
+    public GuitarraPantalla(int IdUsuario) {
+        this.IdUsuario = IdUsuario;
         // Configurar el marco (JFrame)
         setTitle("Guitarra Virtual");
         setSize(900, 800); // Tamaño fijo de la ventana
@@ -13,15 +16,22 @@ public class GuitarraPantalla extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Crear una instancia del panel de imagen
-        MainGuitarraPanel panelImagen = new MainGuitarraPanel();
+        MainGuitarraPanel panelImagen = new MainGuitarraPanel(IdUsuario);
         // Añadir el panel de imagen al marco
         add(panelImagen, BorderLayout.CENTER);
         // Hacer visible el marco
         setVisible(true);
-
+        
+    }
+    public int getIdUsuario() {
+        return IdUsuario;
     }
 
-    public static void main(String[] args) {
-        GuitarraPantalla pantalla = new GuitarraPantalla();
+    public void setIdUsuario(int idUsuario) {
+        IdUsuario = idUsuario;
     }
+    
+    // public static void main(String[] args) {
+    //     GuitarraPantalla pantalla = new GuitarraPantalla();
+    // }
 }

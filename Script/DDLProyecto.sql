@@ -70,6 +70,7 @@ CREATE TABLE Usuario(
 CREATE TABLE Cancion(
   IdCancion               INTEGER NOT NULL PRIMARY KEY autoincrement
   ,IdPersona              INTEGER REFERENCES Persona(IdPersona)
+  ,Nombre                 VARCHAR(18) NOT NULL
   ,Cancion                TEXT NOT NULL
   
   ,Estado                 VARCHAR(1) NOT NULL DEFAULT('A')
