@@ -67,6 +67,10 @@ public class MainGuitarraPanel extends JPanel {
         add(btnGuardar);
         add(btnBorrar);
         add(btnReproducir);
+        btnGuardar.setEnabled(false);
+        btnBorrar.setEnabled(false);
+        btnReproducir.setEnabled(false);
+
         if (guitarra.cancionTemporal.acordesCancion.size() > 0) {
             btnGuardar.setEnabled(false);
             btnBorrar.setEnabled(false);
