@@ -46,7 +46,7 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
         } catch (SQLException e) {
             throw new PatException(e.getMessage(), getClass().getName(), "readBy()");
         }
-        return u;
+        return c;
     }
 
     @Override

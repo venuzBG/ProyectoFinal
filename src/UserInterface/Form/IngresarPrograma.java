@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.Objects;
 
 import BusinessLogic.Entities.Usuario;
-
+import UserInterface.CustomerControl.SOButton;
 
 public class IngresarPrograma extends JFrame {
     private JTextField usuarioField;
@@ -26,6 +26,7 @@ public class IngresarPrograma extends JFrame {
         setSize(imageIcon.getIconWidth(), imageIcon.getIconHeight());
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10); // Añade un margen entre los componentes
 
         // Etiqueta y campo de texto para Usuario
         gbc.gridx = 0;
@@ -33,8 +34,9 @@ public class IngresarPrograma extends JFrame {
         gbc.anchor = GridBagConstraints.WEST;
         add(new JLabel("Usuario:"), gbc);
 
-        usuarioField = new JTextField(15);
+        usuarioField = new JTextField(20); // Aumenta el tamaño del campo de texto
         gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL; // Permite que el campo de texto se expanda horizontalmente
         add(usuarioField, gbc);
 
         // Etiqueta y campo de texto para Clave
@@ -42,15 +44,17 @@ public class IngresarPrograma extends JFrame {
         gbc.gridy = 1;
         add(new JLabel("Clave:"), gbc);
 
-        claveField = new JPasswordField(15);
+        claveField = new JPasswordField(20); // Aumenta el tamaño del campo de texto
         gbc.gridx = 1;
         add(claveField, gbc);
 
         // Botón de Ingresar
-        JButton ingresarButton = new JButton("Ingresar");
+        SOButton ingresarButton = new SOButton("Ingresar");
+        ingresarButton.setPreferredSize(new Dimension(150, 40)); // Ajusta el tamaño del botón
         gbc.gridx = 1;
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.CENTER;
+        gbc.fill = GridBagConstraints.NONE; // Desactiva la expansión horizontal
         add(ingresarButton, gbc);
 
         ingresarButton.addActionListener(new ActionListener() {
@@ -63,7 +67,8 @@ public class IngresarPrograma extends JFrame {
         });
 
         // Botón de Registrar
-        JButton registrarButton = new JButton("Registrar");
+        SOButton registrarButton = new SOButton("Registrar");
+        registrarButton.setPreferredSize(new Dimension(150, 40)); // Ajusta el tamaño del botón
         gbc.gridy = 3;
         add(registrarButton, gbc);
 

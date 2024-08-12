@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import UserInterface.IAStyle;
+import UserInterface.ProyStyle;
 import UserInterface.CustomerControl.PatButton;
 
 public class MenuPanel extends JPanel{
@@ -28,7 +28,7 @@ public class MenuPanel extends JPanel{
         setPreferredSize(new Dimension(350, getHeight())); 
 
         // Cargar la imagen de fondo
-        ImageIcon backgroundIcon = new ImageIcon(IAStyle.URL_MENU);
+        ImageIcon backgroundIcon = new ImageIcon(ProyStyle.URL_MENU);
         JLabel backgroundLabel = new JLabel(backgroundIcon);
 
         // Establecer el tamaño del JLabel para que coincida con el tamaño del panel

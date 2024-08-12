@@ -89,9 +89,9 @@ public class App {
                 e.printStackTrace();
             } 
         
-        // SplashScreenForm.show();
-        // new IngresarPrograma();
-        SwingUtilities.invokeLater(Guitarra::new);
+        SplashScreenForm.show();
+        new IngresarPrograma();
+        // SwingUtilities.invokeLater(Guitarra::new);
     }
     
 }

@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.net.URL;
-
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -12,8 +11,8 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-public abstract class IAStyle {
-    public static final Color COLOR_FONT = new Color(200,100,50);
+public abstract class ProyStyle {
+    public static final Color COLOR_FONT = new Color(100,100,50);
     public static final Color COLOR_FONT_LIGHT = new Color(100, 100, 100);
     public static final Color COLOR_CURSOR = Color.black;
     public static final Color COLOR_BORDER = Color.lightGray;
@@ -28,10 +27,11 @@ public abstract class IAStyle {
     public static final Cursor CURSOR_HAND = new Cursor(Cursor.HAND_CURSOR);   
     public static final Cursor CURSOR_DEFAULT = new Cursor(Cursor.DEFAULT_CURSOR); 
     
-    public static final URL URL_SPLASH = IAStyle.class.getResource("/UserInterface/Resource/Gift/K13e.gif");
-    public static final URL URL_LOGO = IAStyle.class.getResource("/UseInterface/Resource/Img/sailor.png");
-    public static final URL URL_MAIN = IAStyle.class.getResource("/UseInterface/Resource/Img/Splash.png");
-    public static final URL URL_MENU = IAStyle.class.getResource("/UserInterface/Resource/Img/Menu.jpeg");
+    public static final URL URL_SPLASH = ProyStyle.class.getResource("/UserInterface/Resource/Gift/K13e.gif");
+    public static final URL URL_LOGO = ProyStyle.class.getResource("/UseInterface/Resource/Img/sailor.png");
+    public static final URL URL_MAIN = ProyStyle.class.getResource("/UseInterface/Resource/Img/Splash.png");
+    public static final URL URL_MENU = ProyStyle.class.getResource("/UserInterface/Resource/Img/Menu.jpeg");
+    public static int ALIGNMENT_LEFT;
 
     public static final CompoundBorder createBorderRent(){
         return BorderFactory.createCompoundBorder( new LineBorder(Color.lightGray),
