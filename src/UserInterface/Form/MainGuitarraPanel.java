@@ -56,8 +56,7 @@ public class MainGuitarraPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 // Aquí puedes implementar la lógica para cargar canciones
-                cargarCancion();
-                System.out.println("HOLA");
+                new CancionesWindow();
             }
         });
 
@@ -337,6 +336,11 @@ public class MainGuitarraPanel extends JPanel {
             int y = 10;
             g.drawImage(imagenRedimensionada, x, y, this);
         }
+    }
+
+    // Método para actualizar el mensaje de bienvenida con el nombre de usuario
+    public void actualizarMensajeBienvenida(String nombrePersona) {
+        mensajeBienvenida.setText("Bienvenido, " + nombrePersona + "!");
     }
 
     public void cargarCancion() {

@@ -11,13 +11,14 @@ public class CancionesWindow extends JFrame {
     private JButton btnAbrir;
     private JButton btnCancelar;
 
-    public CancionesWindow(String[] canciones) {
+    public CancionesWindow() {
         super("Lista de Canciones");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(300, 400);
+        setVisible(true);
 
         // Crear lista de canciones
-        listaCanciones = new JList<>(canciones);
+        listaCanciones = new JList<>();
         listaCanciones.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrollPane = new JScrollPane(listaCanciones);
 
