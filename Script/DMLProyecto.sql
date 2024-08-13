@@ -41,3 +41,5 @@ INSERT INTO Usuario
 (Usuario , Clave) VALUES
 ('sebastian', '1234')
 ,('Martha', '3456');
+
+DELETE FROM Cancion WHERE IdPersona = 0;

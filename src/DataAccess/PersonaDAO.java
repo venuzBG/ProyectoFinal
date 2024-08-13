@@ -30,7 +30,7 @@ public class PersonaDAO extends SQLiteDataHelper implements IDAO<PersonaDTO>{
          + " , FechaCreacion"
          + " , FechaModifica"
          + " FROM Persona"
-         + " WHERE Estado = 'A'" + id.toString();
+         + " WHERE Estado = 'A'" + " AND IdPersona = "+id.toString();
         
          try {
             Connection conn = openConnection();     //conectar a BD

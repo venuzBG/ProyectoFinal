@@ -26,6 +26,7 @@ public class MainGuitarraPanel extends JPanel {
 
     private int IdCancionBD;
     private Guitarra guitarra = new Guitarra();
+    private Usuario usuarioLogeado = new Usuario();
     private BufferedImage imagen;
     private BufferedImage imagenDeFondo;
     private boolean banderaEscribirCancion = false;
@@ -40,14 +41,14 @@ public class MainGuitarraPanel extends JPanel {
     private Border bordeRedondeado = BorderFactory.createLineBorder(new Color(141, 73, 37), 5, true);
     private JScrollPane scrollPane = new JScrollPane(txtCancion);
 
-    public MainGuitarraPanel(int IdCancionBD) {
-        this.IdCancionBD = IdCancionBD;
+    public MainGuitarraPanel(int idUsuario) {
+        // this.IdCancionBD = IdCancionBD;
         setFocusable(true);
         setSize(900, 800);
         setLayout(null); // Ajusta el espacio entre los botones
 
         mensajeBienvenida = new JLabel(
-                "<html><div style='text-align: left; font-size: 16px;'>Bienvenido usuario,<br>crea una canción<br>o</div></html>");
+                "<html><div style='text-align: left; font-size: 16px;'>Bienvenido "+usuarioLogeado.obtenerNombreBD(idUsuario)+",<br>crea una canción<br>o</div></html>");
         mensajeBienvenida.setFont(new Font("Segoe UI", Font.BOLD, 10));
         mensajeBienvenida.setForeground(new Color(255, 165, 0));
         mensajeBienvenida.setBounds(20, 15, 400, 100);
@@ -159,7 +160,7 @@ public class MainGuitarraPanel extends JPanel {
                 String[] canciones = guitarra.cancionTemporal.acordesCancion.toArray(new String[0]);
         
                 // Llamar al método para guardar la canción en la base de datos
-                service.CancionGuardarBD(IdCancionBD, nombreCancion, canciones);
+                service.CancionGuardarBD(idUsuario, nombreCancion, canciones);
         
                 // Deshabilitar el botón Guardar hasta que haya nuevos cambios
                 btnGuardar.setEnabled(false);
@@ -187,7 +188,7 @@ public class MainGuitarraPanel extends JPanel {
                 btnReproducir.setEnabled(true);
             } else {
                 // Si la canción no está en reproducción, iniciar la reproducción
-                btnReproducir.setText("Parar");
+                btnReproducir.setText("Parar");// El boton ahora se llama Parar, para volver a hacer clic y detener la cancion
                 btnGrabar.setEnabled(false);
                 btnGuardar.setEnabled(false);
                 btnBorrar.setEnabled(false);

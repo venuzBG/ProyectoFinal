@@ -95,6 +95,17 @@ public class Usuario {
         return idusuariobl;
     }
     
+    public String obtenerNombreBD (int idUsuario){
+        String nombreUsuario = "usuario";        
+        try {
+            PersonaBL personaBL = new PersonaBL();
+            nombreUsuario = personaBL.getBy(idUsuario).getNombre(); 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return nombreUsuario;
+    }
     
     
 
