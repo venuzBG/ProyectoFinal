@@ -16,21 +16,14 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 public class MainGuitarraPanel extends JPanel {
-    public int getIdCancionBD() {
-        return IdCancionBD;
-    }
-
-    public void setIdCancionBD(int idCancionBD) {
-        IdCancionBD = idCancionBD;
-    }
-
+    
     private int IdCancionBD;
     private Guitarra guitarra = new Guitarra();
     private Usuario usuarioLogeado = new Usuario();
     private BufferedImage imagen;
     private BufferedImage imagenDeFondo;
     private boolean banderaEscribirCancion = false;
-
+    
     private JButton btnGrabar = new JButton("Grabar");
     private JButton btnGuardar = new JButton("Guardar");
     private JButton btnBorrar = new JButton("Borrar");
@@ -40,7 +33,14 @@ public class MainGuitarraPanel extends JPanel {
     private JLabel cargarLabel;
     private Border bordeRedondeado = BorderFactory.createLineBorder(new Color(141, 73, 37), 5, true);
     private JScrollPane scrollPane = new JScrollPane(txtCancion);
+    public int getIdCancionBD() {
+        return IdCancionBD;
+    }
 
+    public void setIdCancionBD(int idCancionBD) {
+        IdCancionBD = idCancionBD;
+    }
+    
     public MainGuitarraPanel(int idUsuario) {
         // this.IdCancionBD = IdCancionBD;
         setFocusable(true);

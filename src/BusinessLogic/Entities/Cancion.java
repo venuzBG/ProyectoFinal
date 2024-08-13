@@ -8,6 +8,7 @@ import BusinessLogic.CancionBL;
 import DataAccess.DTO.CancionDTO;
 
 public class Cancion {
+
     public String autor;
     public String nombreCancion;
     public ArrayList<String> acordesCancion = new ArrayList<>();
@@ -44,5 +45,15 @@ public class Cancion {
             e.printStackTrace();
         }
     }
+
+    public static ArrayList<String> convertStringToArrayList(String input) {
+        // Divide la cadena en un array de Strings usando el signo "-" como separador
+        String[] elementos = input.split("-");
+        
+        // Convierte el array en un ArrayList y lo retorna
+        return new ArrayList<>(Arrays.asList(elementos));
+    }
+
+
     
 }

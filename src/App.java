@@ -102,7 +102,7 @@ public class App {
 
         SplashScreenForm.show();
         new IngresarPrograma();
-        SwingUtilities.invokeLater(Guitarra::new);
+        // SwingUtilities.invokeLater(Guitarra::new);
     }
 
 }

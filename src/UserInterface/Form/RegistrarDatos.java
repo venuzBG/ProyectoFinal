@@ -133,8 +133,8 @@ public class RegistrarDatos extends JPanel {
         gbc.anchor = GridBagConstraints.CENTER;
         add(confirmarRegistroButton, gbc);
 
-        // Acción del botón Confirmar Registro con validación
-        confirmarRegistroButton.addActionListener(new ActionListener() {
+         // Acción del botón Confirmar Registro con validación
+         confirmarRegistroButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Validar que todos los campos estén completos
@@ -173,7 +173,9 @@ public class RegistrarDatos extends JPanel {
                     idCiudad
                 );
 
+                // Verificar si el registro fue exitoso
                 if (!personaRegistrada) {
+                    JOptionPane.showMessageDialog(null, "Lo sentimos, ya se ha registrado con ese usuario.");
                     return;
                 }
 
