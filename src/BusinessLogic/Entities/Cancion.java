@@ -2,13 +2,13 @@ package BusinessLogic.Entities;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import BusinessLogic.CancionBL;
 import DataAccess.DTO.CancionDTO;
 
 public class Cancion {
-
     public String autor;
     public String nombreCancion;
     public ArrayList<String> acordesCancion = new ArrayList<>();
@@ -44,16 +44,33 @@ public class Cancion {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
 
-    public static ArrayList<String> convertStringToArrayList(String input) {
-        // Divide la cadena en un array de Strings usando el signo "-" como separador
-        String[] elementos = input.split("-");
         
-        // Convierte el array en un ArrayList y lo retorna
-        return new ArrayList<>(Arrays.asList(elementos));
     }
-
-
-    
+    public String[] listarCancionesUsuario (int idUsuario){
+        List <String> lstNombreCancion = new ArrayList<>();  
+         try {
+             CancionBL cancionBL = new CancionBL();
+             for (CancionDTO cancionRegistro : cancionBL.getAllBy(idUsuario)) {
+                lstNombreCancion.add(cancionRegistro.getNombre());
+             }
+             String [] listadoCanciones = new String[lstNombreCancion.size()];
+             listadoCanciones = lstNombreCancion.toArray(new String [0]);
+             return listadoCanciones;
+         } catch (Exception e) {
+             e.printStackTrace();
+             return null;   
+         }  
+     } 
+     
+     public String obtenerContenidoCancion (Integer idPersona, String nombreCancion) throws Exception{
+        String contenido;
+        CancionBL cancionRegistro = new CancionBL();
+        contenido = cancionRegistro.getCancionByNombre(idPersona, nombreCancion);
+        return contenido;
+     }
+    //   public static void main(String[] args) {
+    //      Cancion cancion = new Cancion();
+    //      System.out.println(Arrays.toString(cancion.listarCancionesUsuario(6)));
+    //   }
 }

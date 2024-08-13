@@ -1,9 +1,8 @@
 package DataAccess;
 
 import DataAccess.DTO.CancionDTO;
-import DataAccess.DTO.PersonaDTO;
-import DataAccess.DTO.UsuarioDTO;
 import Framework.PatException;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
 
@@ -28,8 +28,8 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
          + " , Estado"
          + " , FechaCreacion"
          + " , FechaModifica"
-         + " FROM Persona"
-         + " WHERE Estado = 'A'" + id.toString();
+         + " FROM Cancion"
+         + " WHERE Estado = 'A'" + "AND IdCancion = "+id.toString();
         
          try {
             Connection conn = openConnection();     //conectar a BD
@@ -50,6 +50,15 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
         }
         return c;
     }
+
+    
+
+
+
+
+
+
+
 
     @Override
     public boolean create(CancionDTO entity) throws Exception {
@@ -79,7 +88,7 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
          + " , Estado"
          + " , FechaCreacion"
          + " , FechaModifica"
-         + " FROM Usuario"
+         + " FROM Cancion"
          + " WHERE Estado = 'A'";
         try {
             Connection conn = openConnection();     //conectar a BD
@@ -157,4 +166,39 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
         return 0;
     }
 
+    public List<CancionDTO> readAllBy(Integer idPersona) throws Exception {
+        List <CancionDTO> lts = new ArrayList<>();
+       String query = 
+       "SELECT IdCancion"
+        + " , IdPersona"
+        + " , Nombre"
+        + " , Cancion"
+        + " , Estado"
+        + " , FechaCreacion"
+        + " , FechaModifica"
+        + " FROM Cancion"
+        + " WHERE Estado = 'A' AND IdPersona = " + idPersona.toString();
+       try {
+           Connection conn = openConnection();     //conectar a BD
+           Statement  stmt = conn.createStatement();   //CRUD: Select *
+           ResultSet rs = stmt.executeQuery(query);  //ejecutar la
+           while (rs.next()) { 
+               CancionDTO s = new CancionDTO(  rs.getInt(1) 
+                                               ,rs.getInt(2) //IdUsuario
+                                               ,rs.getString(3)  //Nombre
+                                               ,rs.getString(4)  //Cancion
+                                               ,rs.getString(5)  //estado
+                                               ,rs.getString(6)  //FechaCrea
+                                               ,rs.getString(7)); //FechaModifica/
+               lts.add(s);
+           }
+
+       } catch (SQLException e) {
+           
+           throw new PatException(e.getMessage(), getClass().getName(), "readAll()");
+       }
+       return lts;
+   }
+
 }
+

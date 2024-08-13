@@ -66,7 +66,8 @@ public class MainGuitarraPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 // Aquí puedes implementar la lógica para cargar canciones
-                new CancionesWindow();
+                new CancionesWindow(idUsuario);
+
             }
         });
 
@@ -81,11 +82,12 @@ public class MainGuitarraPanel extends JPanel {
         btnBorrar.setEnabled(false);
         btnReproducir.setEnabled(false);
 
-        if (guitarra.cancionTemporal.acordesCancion.size() > 0) {
-            btnGuardar.setEnabled(false);
-            btnBorrar.setEnabled(false);
-            btnReproducir.setEnabled(false);
-        }
+
+        // if (guitarra.cancionTemporal.acordesCancion.size() > 0) {
+        //     btnGuardar.setEnabled(false);
+        //     btnBorrar.setEnabled(false);
+        //     btnReproducir.setEnabled(false);
+        // }
 
         txtCancion.setVisible(true);
 
@@ -206,7 +208,7 @@ public class MainGuitarraPanel extends JPanel {
                         btnBorrar.setEnabled(true);
                     });
                 });
-
+                
                 // Iniciar el hilo para reproducir la canción
                 thread.start();
             }

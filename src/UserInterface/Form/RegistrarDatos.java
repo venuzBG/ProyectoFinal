@@ -3,7 +3,7 @@ package UserInterface.Form;
 import BusinessLogic.Entities.Usuario;
 import UserInterface.CustomerControl.SOButton;
 import UserInterface.CustomerControl.SOJComboBox;
-import UserInterface.CustomerControl.SOJLabel;  // Importa la nueva clase
+import UserInterface.CustomerControl.SOJLabel; // Importa la nueva clase
 import UserInterface.CustomerControl.SOJTextField;
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +20,7 @@ public class RegistrarDatos extends JPanel {
     private JPasswordField claveField;
     private JPasswordField confirmarClaveField;
     private SOJComboBox<String> sexoComboBox;
+    private boolean registroCorrecto = false;
 
     public RegistrarDatos() {
         setLayout(new GridBagLayout());
@@ -56,7 +57,7 @@ public class RegistrarDatos extends JPanel {
         gbc.gridx = 2;
         add(new SOJLabel("Sexo:"), gbc);
 
-        sexoComboBox = new SOJComboBox<>(new String[]{"Masculino", "Femenino", "Otro"});
+        sexoComboBox = new SOJComboBox<>(new String[] { "Masculino", "Femenino", "Otro" });
         gbc.gridx = 3;
         add(sexoComboBox, gbc);
 
@@ -65,7 +66,7 @@ public class RegistrarDatos extends JPanel {
         gbc.gridy = 2;
         add(new SOJLabel("País:"), gbc);
 
-        paisComboBox = new SOJComboBox<>(new String[]{"Ecuador", "Argentina", "Colombia"});
+        paisComboBox = new SOJComboBox<>(new String[] { "Ecuador", "Argentina", "Colombia" });
         gbc.gridx = 1;
         add(paisComboBox, gbc);
 
@@ -133,18 +134,14 @@ public class RegistrarDatos extends JPanel {
         gbc.anchor = GridBagConstraints.CENTER;
         add(confirmarRegistroButton, gbc);
 
-         // Acción del botón Confirmar Registro con validación
-         confirmarRegistroButton.addActionListener(new ActionListener() {
+        // Acción del botón Confirmar Registro con validación
+        confirmarRegistroButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Validar que todos los campos estén completos
-                if (nombreField.getText().trim().isEmpty() ||
-                    apellidoField.getText().trim().isEmpty() ||
-                    correoField.getText().trim().isEmpty() ||
-                    usuarioField.getText().trim().isEmpty() ||
-                    claveField.getPassword().length == 0 ||
-                    confirmarClaveField.getPassword().length == 0) {
+                if (nombreField.getText().trim().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Por favor, completa todos los campos.");
+
                     return;
                 }
 
@@ -166,12 +163,11 @@ public class RegistrarDatos extends JPanel {
 
                 // Registrar la persona
                 boolean personaRegistrada = usuario.registrarPersona(
-                    nombreField.getText().trim(),
-                    apellidoField.getText().trim(),
-                    correoField.getText().trim(),
-                    idSexo,
-                    idCiudad
-                );
+                        nombreField.getText().trim(),
+                        apellidoField.getText().trim(),
+                        correoField.getText().trim(),
+                        idSexo,
+                        idCiudad);
 
                 // Verificar si el registro fue exitoso
                 if (!personaRegistrada) {
@@ -181,17 +177,29 @@ public class RegistrarDatos extends JPanel {
 
                 // Registrar el usuario
                 boolean usuarioRegistrado = usuario.registrarUsuario(
-                    usuarioField.getText().trim(),
-                    clave
-                );
+                        usuarioField.getText().trim(),
+                        clave);
 
-                if (usuarioRegistrado) {
-                    JOptionPane.showMessageDialog(null, "Registro exitoso.");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error al registrar el usuario.");
-                }
-            }
-        });
+                        
+                        if (nombreField.getText().length() <= 2 || apellidoField.getText().length() <= 2
+                        || correoField.getText().length() <= 2 || usuarioField.getText().length() <= 2 ||
+                        clave.length() <= 2 || confirmarClave.length() <= 2) {
+                            JOptionPane.showMessageDialog(null,
+                            "Todos los campos deben ser mas de 2 caracteres.");
+                            registroCorrecto = false;
+                            return;
+                        }else 
+                            registroCorrecto = true;
+
+                        if (usuarioRegistrado&&registroCorrecto) {
+                            JOptionPane.showMessageDialog(null, "Registro exitoso.");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error al registrar el usuario.");
+                        }
+                        
+                    }
+                });
+                
     }
 
     // Método para mapear la ciudad seleccionada a su correspondiente ID

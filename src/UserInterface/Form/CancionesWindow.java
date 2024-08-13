@@ -1,36 +1,51 @@
 package UserInterface.Form;
 
 import javax.swing.*;
+
+import BusinessLogic.Entities.Cancion;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class CancionesWindow extends JFrame {
 
-    private JList<String> listaCanciones;
+    private JList<String> listaCancionesJList;
     private JButton btnAbrir;
     private JButton btnCancelar;
+    private Cancion cancionUsuario;
+    private String[] listaCanciones;
+    private Integer idUsuario;
 
-    public CancionesWindow() {
+    public CancionesWindow (){};
+
+    public CancionesWindow(Integer idUsuario) {
         super("Lista de Canciones");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(300, 400);
-        setVisible(true);
-
+        
         // Crear lista de canciones
-        listaCanciones = new JList<>();
-        listaCanciones.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        JScrollPane scrollPane = new JScrollPane(listaCanciones);
-
+        cancionUsuario = new Cancion();
+        listaCanciones = cancionUsuario.listarCancionesUsuario(idUsuario);
+        listaCancionesJList = new JList<>(listaCanciones);
+        listaCancionesJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JScrollPane scrollPane = new JScrollPane(listaCancionesJList);
+        
         // Crear botones
         btnAbrir = new JButton("Abrir");
         btnCancelar = new JButton("Cancelar");
-
+        
         // Agregar acción al botón Abrir
         btnAbrir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                abrirCancionSeleccionada();
+                try {
+                    abrirCancionSeleccionada(idUsuario);
+                } catch (Exception e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
             }
         });
 
@@ -54,20 +69,25 @@ public class CancionesWindow extends JFrame {
 
         add(panelBotones, BorderLayout.SOUTH);
 
-        setLocationRelativeTo(null); // Centrar la ventana en la pantalla
+        setLocationRelativeTo(null);
+        setVisible(true);
+        // Centrar la ventana en la pantalla
     }
 
-    private void abrirCancionSeleccionada() {
-        int selectedIndex = listaCanciones.getSelectedIndex();
+    public String abrirCancionSeleccionada(Integer idUsuario) throws Exception {
+        String contenidoCancion;
+        int selectedIndex = listaCancionesJList.getSelectedIndex();
         if (selectedIndex != -1) {
-            String cancionSeleccionada = listaCanciones.getSelectedValue();
-            // Aquí puedes implementar la lógica para abrir la canción seleccionada
-            System.out.println("Abriendo canción: " + cancionSeleccionada);
+            String cancionSeleccionada = listaCancionesJList.getSelectedValue();
+            contenidoCancion = cancionUsuario.obtenerContenidoCancion(idUsuario, cancionSeleccionada);
+            System.out.println("Abriendo canción: " + cancionSeleccionada+"\n"+contenidoCancion);
             // Cierra la ventana después de abrir la canción
             dispose();
+            return contenidoCancion;
         } else {
             JOptionPane.showMessageDialog(this, "Selecciona una canción para abrir.", "Error",
                     JOptionPane.ERROR_MESSAGE);
+            return null;
         }
     }
 
@@ -75,15 +95,8 @@ public class CancionesWindow extends JFrame {
         dispose(); // Cierra la ventana
     }
 
-    // public static void main(String[] args) {
-    // // Ejemplo de uso: Crear una instancia de la ventana CancionesWindow
-    // String[] canciones = { "Canción 1", "Canción 2", "Canción 3" }; // Ejemplo de
-    // lista de canciones
-    // SwingUtilities.invokeLater(new Runnable() {
-    // public void run() {
-    // CancionesWindow ventana = new CancionesWindow(canciones);
-    // ventana.setVisible(true);
-    // }
-    // });
-    // }
+    public static void main(String[] args) {
+    
+     CancionesWindow ventana = new CancionesWindow(6);
+     }
 }

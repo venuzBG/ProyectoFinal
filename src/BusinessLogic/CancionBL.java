@@ -21,6 +21,14 @@ public class CancionBL {
         persona = cDAO.readBy(idPersona);
         return persona;
     }
+
+    public String getCancionByNombre(int idPersona,String nombreCancion) throws Exception{
+        String cancion;
+        persona = cDAO.readBy(idPersona);
+        cancion = persona.getCancion();
+        return cancion;
+    }
+
     public boolean add(CancionDTO cancionDTO) throws Exception{   
         return cDAO.create(cancionDTO);
     }
@@ -34,5 +42,15 @@ public class CancionBL {
         return cDAO.getRowCount();
     }
 
+    public List <CancionDTO> getAllBy(int idUsuario) throws Exception{
+        List <CancionDTO> lst = cDAO.readAllBy(idUsuario);
+        return lst;
+    }
 
+    // public static void main(String[] args) throws Exception {
+    //     CancionBL cBL = new CancionBL();
+    //     for (CancionDTO cancionRegistro : cBL.getAllBy(6)) {
+    //         System.out.println(cancionRegistro.toString());
+    //     }
+    // }
 }
