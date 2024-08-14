@@ -28,7 +28,7 @@ public abstract class ProyStyle {
     public static final Cursor CURSOR_DEFAULT = new Cursor(Cursor.DEFAULT_CURSOR);
 
     // Ruta de la imagen de fondo
-    public static final String IMG_BACKGROUND_PATH = "/UserInterface/Resource/Img/FondoUsuario.jpg";
+    public static final URL URL_FondoPrincipal = ProyStyle.class.getResource("/UserInterface/Resource/Img/FondoUsuario.jpg");
 
     public static final URL URL_SPLASH = ProyStyle.class.getResource("/UserInterface/Resource/Gift/K13e.gif");
 

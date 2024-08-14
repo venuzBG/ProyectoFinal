@@ -89,8 +89,6 @@ public class App {
                 // String[] canciones = {"Cancion1", "Cancion2", "Cancion3"};
         
                 // service.CancionGuardarBD(idPersona, nombre, canciones);
-    
-
         
         FlatLightLaf.setup();
         FlatLightLaf.supportsNativeWindowDecorations();

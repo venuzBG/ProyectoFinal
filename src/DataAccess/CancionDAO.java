@@ -51,15 +51,6 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
         return c;
     }
 
-    
-
-
-
-
-
-
-
-
     @Override
     public boolean create(CancionDTO entity) throws Exception {
         String query = " INSERT INTO Cancion (IdPersona,Nombre,Cancion) VALUES (?,?,?)";

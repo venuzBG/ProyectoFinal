@@ -13,28 +13,28 @@ public class Usuario {
         usuarioBL = new UsuarioBL();
     }
 
-    public boolean ingresarDatos(String usuario, String clave) {
-        boolean usuarioValido = false;
-        try {
-            List<UsuarioDTO> usuarios = usuarioBL.getAll();
+    // public boolean ingresarDatos(String usuario, String clave) {
+    //     boolean usuarioValido = false;
+    //     try {
+    //         List<UsuarioDTO> usuarios = usuarioBL.getAll();
 
-            for (UsuarioDTO u : usuarios) {
-                if (u.getUsuario().equals(usuario) && u.getClave().equals(clave)) {
-                    usuarioValido = true;
-                    break;
-                }
-            }
+    //         for (UsuarioDTO u : usuarios) {
+    //             if (u.getUsuario().equals(usuario) && u.getClave().equals(clave)) {
+    //                 usuarioValido = true;
+    //                 break;
+    //             }
+    //         }
 
-            if (usuarioValido) {
-                System.out.println("Bienvenido, " + usuario);
-            } else {
-                System.out.println("Error: Usuario o clave incorrecta.");
-            }
-        } catch (Exception e) {
-            System.out.println("Error al intentar ingresar los datos: " + e.getMessage());
-        }
-        return usuarioValido;
-    }
+    //         if (usuarioValido) {
+    //             System.out.println("Bienvenido, " + usuario);
+    //         } else {
+    //             System.out.println("Error: Usuario o clave incorrecta.");
+    //         }
+    //     } catch (Exception e) {
+    //         System.out.println("Error al intentar ingresar los datos: " + e.getMessage());
+    //     }
+    //     return usuarioValido;
+    // }
 
     public boolean registrarPersona(String nombre, String apellido, String correo, int idSexo, int idLocalidad) {
         PersonaBL personaBL = new PersonaBL();
@@ -82,13 +82,12 @@ public class Usuario {
             return false;
         }
     }
-
-    public int LlevarVariable(String nombreUsuario, String claveUsuario) {
+    ///actualizado para llevar la variable del id del usuario
+    public int IngresarDatos(String nombreUsuario, String claveUsuario) {
         int idusuariobl = -1; // Valor predeterminado en caso de error
         try {
             UsuarioBL usuarioBL = new UsuarioBL();
             idusuariobl = usuarioBL.getIdUsuarioByUserAndPassword(nombreUsuario, claveUsuario);
-            System.out.println("El ID del usuario es: " + idusuariobl);
         } catch (Exception e) {
             e.printStackTrace();
         }

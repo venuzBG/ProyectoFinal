@@ -20,8 +20,7 @@ public class IngresarPrograma extends JFrame {
         usuario = new Usuario();
 
         // Cargar la imagen de fondo
-        ImageIcon imageIcon = new ImageIcon(
-                Objects.requireNonNull(getClass().getResource("/UserInterface/Resource/Img/FondoUsuario.jpg")));
+        ImageIcon imageIcon = new ImageIcon(ProyStyle.URL_FondoPrincipal);
         JLabel background = new JLabel(imageIcon);
         setContentPane(background);
 
@@ -77,7 +76,7 @@ public class IngresarPrograma extends JFrame {
                 String claveText = new String(claveField.getPassword());
                 
                 // Usa el método LlevarVariable para obtener el idusuariobl
-                int idusuariobl = usuario.LlevarVariable(usuarioText, claveText);
+                int idusuariobl = usuario.IngresarDatos(usuarioText, claveText);
         
                 if (idusuariobl != -1) { // Verifica si el ID se obtuvo correctamente
                     setVisible(false);
