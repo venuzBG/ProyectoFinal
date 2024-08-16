@@ -5,13 +5,13 @@ Fecha : 15.julio.2k24
 Script: Insertando MER
 */
 
-INSERT INTO CatalogoTipo
+INSERT INTO SOCatalogoTipo
 (Nombre) VALUES
 ('Sexo')
 ,('EstadoCivil')
 ,('LocalidadTipo');
 
-INSERT INTO Catalogo
+INSERT INTO SOCatalogo
 (IdCatalogoTipo  ,Nombre    ) VALUES
 (1,'Masculino')
 ,(1,'Femenino')
@@ -19,7 +19,7 @@ INSERT INTO Catalogo
 ,(3,'Pais')
 ,(3,'Ciudad');
 
-INSERT INTO Localidad
+INSERT INTO SOLocalidad
 (IdLocalidadPadre  ,IdLocalidadEstructura   ,Nombre    ) VALUES
 (NULL, 4 ,'Ecuador')
 ,(NULL,4,'Colombia')
@@ -32,12 +32,12 @@ INSERT INTO Localidad
 ,(3,5,'Cordova');
 
 
-INSERT INTO Persona
+INSERT INTO SOPersona
 (Nombre     ,Apellido      ,Correo     ,IdCatalogoSexo,IdLocalidad) VALUES
 ('Sebastian', 'Andrade', 'sebastian.a@gmail.com', 1, 4)
 ,('Martha', 'Rodriguez', 'MarthaRod@gmail.com', 2, 7);
 
-INSERT INTO Usuario
+INSERT INTO SOUsuario
 (Usuario , Clave) VALUES
 ('sebastian', '1234')
 ,('Martha', '3456');

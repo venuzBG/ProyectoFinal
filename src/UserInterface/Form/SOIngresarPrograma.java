@@ -6,18 +6,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
-import BusinessLogic.Entities.Usuario;
+import BusinessLogic.Entities.SOUsuario;
 import UserInterface.CustomerControl.SOButton;
 import UserInterface.ProyStyle;
 
-public class IngresarPrograma extends JFrame {
-    private JTextField usuarioField;
-    private JPasswordField claveField;
-    private Usuario usuario;
+public class SOIngresarPrograma extends JFrame {
+    private JTextField sousuarioField;
+    private JPasswordField soclaveField;
+    private SOUsuario sousuario;
     private GuitarraPantalla pantallaJuego;
 
-    public IngresarPrograma() {
-        usuario = new Usuario();
+    public SOIngresarPrograma() {
+        sousuario = new SOUsuario();
 
         // Cargar la imagen de fondo
         ImageIcon imageIcon = new ImageIcon(ProyStyle.URL_FondoPrincipal);
@@ -35,16 +35,16 @@ public class IngresarPrograma extends JFrame {
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.WEST;
         JLabel usuarioLabel = new JLabel("Usuario:");
-        usuarioLabel.setFont(ProyStyle.FONT); // Aplicar el estilo de fuente a la etiqueta de usuario
+        usuarioLabel.setFont(ProyStyle.FONT); // Aplicar el estilo de fuente a la etiqueta de sousuario
         usuarioLabel.setForeground(ProyStyle.COLOR_FONT_LIGHT); // Aplicar color de fuente usando ProyStyle
         add(usuarioLabel, gbc);
 
-        usuarioField = new JTextField(20); // Aumenta el tamaño del campo de texto
-        usuarioField.setFont(ProyStyle.FONT); // Aplicar el estilo de fuente al campo de texto de usuario
-        usuarioField.setForeground(ProyStyle.COLOR_FONT_LIGHT); // Aplicar color de fuente usando ProyStyle
+        sousuarioField = new JTextField(20); // Aumenta el tamaño del campo de texto
+        sousuarioField.setFont(ProyStyle.FONT); // Aplicar el estilo de fuente al campo de texto de sousuario
+        sousuarioField.setForeground(ProyStyle.COLOR_FONT_LIGHT); // Aplicar color de fuente usando ProyStyle
         gbc.gridx = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL; // Permite que el campo de texto se expanda horizontalmente
-        add(usuarioField, gbc);
+        add(sousuarioField, gbc);
 
         // Etiqueta y campo de texto para Clave
         gbc.gridx = 0;
@@ -54,11 +54,11 @@ public class IngresarPrograma extends JFrame {
         claveLabel.setForeground(ProyStyle.COLOR_FONT_LIGHT); // Aplicar color de fuente usando ProyStyle
         add(claveLabel, gbc);
 
-        claveField = new JPasswordField(20); // Aumenta el tamaño del campo de texto
-        claveField.setFont(ProyStyle.FONT); // Aplicar el estilo de fuente al campo de texto de clave
-        claveField.setForeground(ProyStyle.COLOR_FONT_LIGHT); // Aplicar color de fuente usando ProyStyle
+        soclaveField = new JPasswordField(20); // Aumenta el tamaño del campo de texto
+        soclaveField.setFont(ProyStyle.FONT); // Aplicar el estilo de fuente al campo de texto de clave
+        soclaveField.setForeground(ProyStyle.COLOR_FONT_LIGHT); // Aplicar color de fuente usando ProyStyle
         gbc.gridx = 1;
-        add(claveField, gbc);
+        add(soclaveField, gbc);
 
         // Botón de Ingresar
         SOButton ingresarButton = new SOButton("Ingresar");
@@ -72,11 +72,11 @@ public class IngresarPrograma extends JFrame {
         ingresarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String usuarioText = usuarioField.getText();
-                String claveText = new String(claveField.getPassword());
+                String usuarioText = sousuarioField.getText();
+                String claveText = new String(soclaveField.getPassword());
                 
                 // Usa el método LlevarVariable para obtener el idusuariobl
-                int idusuariobl = usuario.IngresarDatos(usuarioText, claveText);
+                int idusuariobl = sousuario.soIngresarDatos(usuarioText, claveText);
         
                 if (idusuariobl != -1) { // Verifica si el ID se obtuvo correctamente
                     setVisible(false);
@@ -99,7 +99,7 @@ public class IngresarPrograma extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Desplegar el formulario de registro
-                RegistrarDatos registrarDatos = new RegistrarDatos();
+                SORegistrarDatos registrarDatos = new SORegistrarDatos();
                 JOptionPane.showMessageDialog(null, registrarDatos, "Registrar Usuario", JOptionPane.PLAIN_MESSAGE);
             }
         });

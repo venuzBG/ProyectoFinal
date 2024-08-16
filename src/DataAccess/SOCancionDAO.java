@@ -1,6 +1,6 @@
 package DataAccess;
 
-import DataAccess.DTO.CancionDTO;
+import DataAccess.DTO.SOCancionDTO;
 import Framework.PatException;
 
 
@@ -15,11 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
+public class SOCancionDAO extends SQLiteDataHelper implements IDAO<SOCancionDTO>{
 
     @Override
-    public CancionDTO readBy(Integer id) throws Exception {
-        CancionDTO c = new CancionDTO();
+    public SOCancionDTO readBy(Integer id) throws Exception {
+        SOCancionDTO c = new SOCancionDTO();
         String query =
          "SELECT IdCancion"
          + " , IdPersona"
@@ -28,7 +28,7 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
          + " , Estado"
          + " , FechaCreacion"
          + " , FechaModifica"
-         + " FROM Cancion"
+         + " FROM SOCancion"
          + " WHERE Estado = 'A'" + "AND IdCancion = "+id.toString();
         
          try {
@@ -36,7 +36,7 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
             Statement  stmt = conn.createStatement();   //CRUD: Select *
             ResultSet rs = stmt.executeQuery(query);  //ejecutar la
             while (rs.next()) { 
-                c = new CancionDTO(rs.getInt(1) 
+                c = new SOCancionDTO(rs.getInt(1) 
                                    ,rs.getInt(2) //IdUsuario
                                    ,rs.getString(3)  //nombre
                                    ,rs.getString(4)  //Cancion
@@ -52,8 +52,8 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
     }
 
     @Override
-    public boolean create(CancionDTO entity) throws Exception {
-        String query = " INSERT INTO Cancion (IdPersona,Nombre,Cancion) VALUES (?,?,?)";
+    public boolean create(SOCancionDTO entity) throws Exception {
+        String query = " INSERT INTO SOCancion (IdPersona,Nombre,Cancion) VALUES (?,?,?)";
         try {
             Connection        conn  = openConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -69,8 +69,8 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
     }
 
     @Override
-    public List<CancionDTO> readAll() throws Exception {
-         List <CancionDTO> lts = new ArrayList<>();
+    public List<SOCancionDTO> readAll() throws Exception {
+         List <SOCancionDTO> lts = new ArrayList<>();
         String query = 
         "SELECT IdCancion"
          + " , IdPersona"
@@ -79,14 +79,14 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
          + " , Estado"
          + " , FechaCreacion"
          + " , FechaModifica"
-         + " FROM Cancion"
+         + " FROM SOCancion"
          + " WHERE Estado = 'A'";
         try {
             Connection conn = openConnection();     //conectar a BD
             Statement  stmt = conn.createStatement();   //CRUD: Select *
             ResultSet rs = stmt.executeQuery(query);  //ejecutar la
             while (rs.next()) { 
-                CancionDTO s = new CancionDTO(  rs.getInt(1) 
+                SOCancionDTO s = new SOCancionDTO(  rs.getInt(1) 
                                                 ,rs.getInt(2) //IdUsuario
                                                 ,rs.getString(3)  //Nombre
                                                 ,rs.getString(4)  //Cancion
@@ -104,10 +104,10 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
     }
 
     @Override
-    public boolean update(CancionDTO entity) throws Exception {
+    public boolean update(SOCancionDTO entity) throws Exception {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        String query = "UPDATE Cancion SET IdPersona = ?,Nombre = ? ,Cancion=?,FechaModifica = ? WHERE IdCancion = ?";
+        String query = "UPDATE SOCancion SET IdPersona = ?,Nombre = ? ,Cancion=?,FechaModifica = ? WHERE IdCancion = ?";
         try {
             Connection conn = openConnection();     //conectar a BD
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -125,7 +125,7 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
 
     @Override
     public boolean delete(int id) throws Exception {
-        String query = " UPDATE Cancion SET Estado = ? WHERE IdCancion = ?";
+        String query = " UPDATE SOCancion SET Estado = ? WHERE IdCancion = ?";
         try {
             Connection          conn = openConnection();
             PreparedStatement  pstmt = conn.prepareStatement(query);
@@ -141,7 +141,7 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
 
     public Integer getRowCount()  throws Exception  {
         String query =" SELECT COUNT(*) TotalReg "
-                     +" FROM    Cancion          "
+                     +" FROM    SOCancion          "
                      +" WHERE   Estado ='A'      ";
         try {
             Connection conn = openConnection();             
@@ -157,8 +157,8 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
         return 0;
     }
 
-    public List<CancionDTO> readAllBy(Integer idPersona) throws Exception {
-        List <CancionDTO> lts = new ArrayList<>();
+    public List<SOCancionDTO> readAllBy(Integer idPersona) throws Exception {
+        List <SOCancionDTO> lts = new ArrayList<>();
        String query = 
        "SELECT IdCancion"
         + " , IdPersona"
@@ -167,14 +167,14 @@ public class CancionDAO extends SQLiteDataHelper implements IDAO<CancionDTO>{
         + " , Estado"
         + " , FechaCreacion"
         + " , FechaModifica"
-        + " FROM Cancion"
+        + " FROM SOCancion"
         + " WHERE Estado = 'A' AND IdPersona = " + idPersona.toString();
        try {
            Connection conn = openConnection();     //conectar a BD
            Statement  stmt = conn.createStatement();   //CRUD: Select *
            ResultSet rs = stmt.executeQuery(query);  //ejecutar la
            while (rs.next()) { 
-               CancionDTO s = new CancionDTO(  rs.getInt(1) 
+               SOCancionDTO s = new SOCancionDTO(  rs.getInt(1) 
                                                ,rs.getInt(2) //IdUsuario
                                                ,rs.getString(3)  //Nombre
                                                ,rs.getString(4)  //Cancion

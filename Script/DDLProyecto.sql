@@ -5,14 +5,14 @@ Fecha : 15.julio.2k24
 Script: Insertando MER
 */
 
-DROP TABLE IF EXISTS CatalogoTipo;
-DROP TABLE IF EXISTS Catalogo;
-DROP TABLE IF EXISTS Localidad;
-DROP TABLE IF EXISTS Persona;
-DROP TABLE IF EXISTS Usuario;
-DROP TABLE IF EXISTS Cancion;
+DROP TABLE IF EXISTS SOCatalogoTipo;
+DROP TABLE IF EXISTS SOCatalogo;
+DROP TABLE IF EXISTS SOLocalidad;
+DROP TABLE IF EXISTS SOPersona;
+DROP TABLE IF EXISTS SOUsuario;
+DROP TABLE IF EXISTS SOCancion;
 
-CREATE TABLE catalogoTipo (
+CREATE TABLE SOCatalogoTipo (
    IdCatalogoTipo   INTEGER NOT NULL PRIMARY KEY autoincrement 
   ,Nombre           VARCHAR(30) NOT NULL UNIQUE
 
@@ -21,9 +21,9 @@ CREATE TABLE catalogoTipo (
   ,FechaModifica    DATETIME
 );
 
-CREATE TABLE Catalogo(
+CREATE TABLE SOCatalogo(
   IdCatalogo         INTEGER NOT NULL PRIMARY KEY autoincrement 
-  ,IdCatalogoTipo    INTEGER NOT NULL REFERENCES CatalogoTipo(IdCatalogoTipo)
+  ,IdCatalogoTipo    INTEGER NOT NULL REFERENCES SOCatalogoTipo(IdCatalogoTipo)
   ,Nombre            VARCHAR(18) NOT NULL UNIQUE
 
   ,Estado           VARCHAR(1) NOT NULL DEFAULT('A')
@@ -31,10 +31,10 @@ CREATE TABLE Catalogo(
   ,FechaModifica    DATETIME
 );
 
-CREATE TABLE Localidad(
+CREATE TABLE SOLocalidad(
     IdLocalidad             INTEGER NOT NULL PRIMARY KEY autoincrement
-    ,IdLocalidadPadre       INTEGER REFERENCES Localidad(IdLocalidad)
-    ,IdLocalidadEstructura  INTEGER REFERENCES Catalogo(IdCatalogo)
+    ,IdLocalidadPadre       INTEGER REFERENCES SOLocalidad(IdLocalidad)
+    ,IdLocalidadEstructura  INTEGER REFERENCES SOCatalogo(IdCatalogo)
     ,Nombre                 VARCHAR(18) NOT NULL 
 
     ,Estado                 VARCHAR(1) NOT NULL DEFAULT('A')
@@ -42,34 +42,34 @@ CREATE TABLE Localidad(
     ,FechaModifica          DATETIME
 );
 
-CREATE TABLE Persona(
+CREATE TABLE SOPersona(
     IdPersona                   INTEGER NOT NULL PRIMARY KEY autoincrement
     ,Nombre                     VARCHAR(18) NOT NULL
     ,Apellido                   VARCHAR(18) NOT NULL
     ,Correo                     VARCHAR(30) UNIQUE NOT NULL
-    ,IdCatalogoSexo             INTEGER REFERENCES Catalogo(IdCatalogo)
-    ,IdLocalidad                INTEGER REFERENCES Localidad(IdLocalidad)
+    ,IdCatalogoSexo             INTEGER REFERENCES SOCatalogo(IdCatalogo)
+    ,IdLocalidad                INTEGER REFERENCES SOLocalidad(IdLocalidad)
 
     ,Estado                     VARCHAR(1) NOT NULL DEFAULT('A')
     ,FechaCreacion              DATETIME DEFAULT(datetime('now','localtime'))
     ,FechaModifica              DATETIME
 );
 
-CREATE TABLE Usuario(
-    IdUsuario               INTEGER 
-    ,Usuario                VARCHAR(18) NOT NULL UNIQUE
-    ,Clave                  VARCHAR(18) NOT NULL UNIQUE
+CREATE TABLE SOUsuario(
+    IdUsuario                   INTEGER 
+    ,Usuario                  VARCHAR(18) NOT NULL UNIQUE
+    ,Clave                      VARCHAR(18) NOT NULL UNIQUE
 
-    ,Estado                 VARCHAR(1) NOT NULL DEFAULT('A')
-    ,FechaCreacion          DATETIME DEFAULT(datetime('now','localtime'))
-    ,FechaModifica          DATETIME
+    ,Estado                     VARCHAR(1) NOT NULL DEFAULT('A')
+    ,FechaCreacion              DATETIME DEFAULT(datetime('now','localtime'))
+    ,FechaModifica              DATETIME
     ,PRIMARY KEY (IdUsuario)
-    ,FOREIGN KEY (IdUsuario) REFERENCES Persona(IdPersona)
+    ,FOREIGN KEY (IdUsuario)    REFERENCES SOPersona(IdPersona)
 );
 
-CREATE TABLE Cancion(
+CREATE TABLE SOCancion(
   IdCancion               INTEGER NOT NULL PRIMARY KEY autoincrement
-  ,IdPersona              INTEGER REFERENCES Persona(IdPersona)
+  ,IdPersona              INTEGER REFERENCES SOPersona(IdPersona)
   ,Nombre                 VARCHAR(18) NOT NULL
   ,Cancion                TEXT NOT NULL
   

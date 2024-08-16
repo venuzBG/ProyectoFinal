@@ -19,7 +19,7 @@ public class MainGuitarraPanel extends JPanel {
     
     private int IdCancionBD;
     private Guitarra guitarra = new Guitarra();
-    private Usuario usuarioLogeado = new Usuario();
+    private SOUsuario usuarioLogeado = new SOUsuario();
     private BufferedImage imagen;
     private BufferedImage imagenDeFondo;
     private boolean banderaEscribirCancion = false;
@@ -48,7 +48,7 @@ public class MainGuitarraPanel extends JPanel {
         setLayout(null); // Ajusta el espacio entre los botones
 
         mensajeBienvenida = new JLabel(
-                "<html><div style='text-align: left; font-size: 16px;'>Bienvenido "+usuarioLogeado.obtenerNombreBD(idUsuario)+",<br>crea una canción<br>o</div></html>");
+                "<html><div style='text-align: left; font-size: 16px;'>Bienvenido "+usuarioLogeado.soObtenerNombreBD(idUsuario)+",<br>crea una canción<br>o</div></html>");
         mensajeBienvenida.setFont(new Font("Segoe UI", Font.BOLD, 10));
         mensajeBienvenida.setForeground(new Color(255, 165, 0));
         mensajeBienvenida.setBounds(20, 15, 400, 100);

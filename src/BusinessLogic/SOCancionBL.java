@@ -2,22 +2,22 @@ package BusinessLogic;
 
 import java.util.List;
 
-import DataAccess.CancionDAO;
-import DataAccess.DTO.CancionDTO;
+import DataAccess.SOCancionDAO;
+import DataAccess.DTO.SOCancionDTO;
 
-public class CancionBL {
-    private CancionDTO persona;
-    private CancionDAO cDAO = new CancionDAO();
+public class SOCancionBL {
+    private SOCancionDTO persona;
+    private SOCancionDAO cDAO = new SOCancionDAO();
 
-    public CancionBL(){}
+    public SOCancionBL(){}
 
-    public List<CancionDTO> getAll() throws Exception{
-        List<CancionDTO> lst = cDAO.readAll();
-        for (CancionDTO cancionDTO : lst) 
+    public List<SOCancionDTO> getAll() throws Exception{
+        List<SOCancionDTO> lst = cDAO.readAll();
+        for (SOCancionDTO cancionDTO : lst) 
             cancionDTO.setCancion(cancionDTO.getCancion());
         return lst;
     }
-    public CancionDTO getBy(int idPersona) throws Exception{
+    public SOCancionDTO getBy(int idPersona) throws Exception{
         persona = cDAO.readBy(idPersona);
         return persona;
     }
@@ -29,10 +29,10 @@ public class CancionBL {
         return cancion;
     }
 
-    public boolean add(CancionDTO cancionDTO) throws Exception{   
+    public boolean add(SOCancionDTO cancionDTO) throws Exception{   
         return cDAO.create(cancionDTO);
     }
-    public boolean update(CancionDTO cancionDTO) throws Exception{
+    public boolean update(SOCancionDTO cancionDTO) throws Exception{
         return cDAO.update(cancionDTO);
     }
     public boolean delete(int idPersona) throws Exception{
@@ -42,8 +42,8 @@ public class CancionBL {
         return cDAO.getRowCount();
     }
 
-    public List <CancionDTO> getAllBy(int idUsuario) throws Exception{
-        List <CancionDTO> lst = cDAO.readAllBy(idUsuario);
+    public List <SOCancionDTO> getAllBy(int idUsuario) throws Exception{
+        List <SOCancionDTO> lst = cDAO.readAllBy(idUsuario);
         return lst;
     }
 

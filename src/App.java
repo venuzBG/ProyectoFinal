@@ -8,16 +8,16 @@ import javax.swing.UnsupportedLookAndFeelException;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneDarkIJTheme;
 
-import BusinessLogic.PersonaBL;
+import BusinessLogic.SOPersonaBL;
 import BusinessLogic.Entities.*;
-import BusinessLogic.UsuarioBL;
-import BusinessLogic.Entities.Usuario;
-import DataAccess.DTO.PersonaDTO;
-import DataAccess.DTO.UsuarioDTO;
-import UserInterface.Form.IngresarPrograma;
+import BusinessLogic.SOUsuarioBL;
+import BusinessLogic.Entities.SOUsuario;
+import DataAccess.DTO.SOPersonaDTO;
+import DataAccess.DTO.SOUsuarioDTO;
+import UserInterface.Form.SOIngresarPrograma;
 import UserInterface.Form.SplashScreenForm;
-import DataAccess.PersonaDAO;
-import DataAccess.UsuarioDAO;
+import DataAccess.SOPersonaDAO;
+import DataAccess.SOUsuarioDAO;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -99,7 +99,7 @@ public class App {
         }
 
         SplashScreenForm.show();
-        new IngresarPrograma();
+        new SOIngresarPrograma();
         // SwingUtilities.invokeLater(Guitarra::new);
     }
 

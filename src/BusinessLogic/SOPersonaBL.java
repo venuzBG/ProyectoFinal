@@ -1,29 +1,29 @@
 package BusinessLogic;
 
-import DataAccess.DTO.PersonaDTO;
-import DataAccess.PersonaDAO;
+import DataAccess.DTO.SOPersonaDTO;
+import DataAccess.SOPersonaDAO;
 import java.util.List;
 
-public class PersonaBL {
-    private PersonaDTO persona;
-    private PersonaDAO pDAO = new PersonaDAO();
+public class SOPersonaBL {
+    private SOPersonaDTO persona;
+    private SOPersonaDAO pDAO = new SOPersonaDAO();
 
-    public PersonaBL(){}
+    public SOPersonaBL(){}
 
-    public List<PersonaDTO> getAll() throws Exception{
-        List<PersonaDTO> lst = pDAO.readAll();
-        for (PersonaDTO personaDTO : lst) 
+    public List<SOPersonaDTO> getAll() throws Exception{
+        List<SOPersonaDTO> lst = pDAO.readAll();
+        for (SOPersonaDTO personaDTO : lst) 
             personaDTO.setNombre(personaDTO.getNombre().toUpperCase());
         return lst;
     }
-    public PersonaDTO getBy(int idPersona) throws Exception{
+    public SOPersonaDTO getBy(int idPersona) throws Exception{
         persona = pDAO.readBy(idPersona);
         return persona;
     }
-    public boolean add(PersonaDTO personaDTO) throws Exception{   
+    public boolean add(SOPersonaDTO personaDTO) throws Exception{   
         return pDAO.create(personaDTO);
     }
-    public boolean update(PersonaDTO personaDTO) throws Exception{
+    public boolean update(SOPersonaDTO personaDTO) throws Exception{
         return pDAO.update(personaDTO);
     }
     public boolean delete(int idPersona) throws Exception{
@@ -34,8 +34,8 @@ public class PersonaBL {
     }
 
     public boolean correoExiste(String correo) throws Exception {
-        List<PersonaDTO> personas = pDAO.readAll();
-        for (PersonaDTO persona : personas) {
+        List<SOPersonaDTO> personas = pDAO.readAll();
+        for (SOPersonaDTO persona : personas) {
             if (persona.getCorreo().equalsIgnoreCase(correo)) {
                 return true;
             }

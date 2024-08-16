@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import BusinessLogic.CancionBL;
-import DataAccess.DTO.CancionDTO;
+import BusinessLogic.SOCancionBL;
+import DataAccess.DTO.SOCancionDTO;
 
 public class Cancion {
     public String autor;
@@ -26,13 +26,13 @@ public class Cancion {
             String cancionString = convertArrayToString(canciones);
 
             // Crea una instancia de CancionDTO con los datos proporcionados
-            CancionDTO nuevaCancion = new CancionDTO();
+            SOCancionDTO nuevaCancion = new SOCancionDTO();
             nuevaCancion.setIdPersona(idPersona);
             nuevaCancion.setNombre(nombre);
             nuevaCancion.setCancion(cancionString);
 
             // Crea una instancia de CancionBL y guarda la nueva canción
-            CancionBL cancionBL = new CancionBL();
+            SOCancionBL cancionBL = new SOCancionBL();
             boolean isSaved = cancionBL.add(nuevaCancion);
 
             if (isSaved) {
@@ -50,8 +50,8 @@ public class Cancion {
     public String[] listarCancionesUsuario (int idUsuario){
         List <String> lstNombreCancion = new ArrayList<>();  
          try {
-             CancionBL cancionBL = new CancionBL();
-             for (CancionDTO cancionRegistro : cancionBL.getAllBy(idUsuario)) {
+             SOCancionBL cancionBL = new SOCancionBL();
+             for (SOCancionDTO cancionRegistro : cancionBL.getAllBy(idUsuario)) {
                 lstNombreCancion.add(cancionRegistro.getNombre());
              }
              String [] listadoCanciones = new String[lstNombreCancion.size()];
@@ -65,7 +65,7 @@ public class Cancion {
      
      public String obtenerContenidoCancion (Integer idPersona, String nombreCancion) throws Exception{
         String contenido;
-        CancionBL cancionRegistro = new CancionBL();
+        SOCancionBL cancionRegistro = new SOCancionBL();
         contenido = cancionRegistro.getCancionByNombre(idPersona, nombreCancion);
         return contenido;
      }

@@ -1,29 +1,29 @@
 package BusinessLogic;
 
-import DataAccess.DTO.UsuarioDTO;
-import DataAccess.UsuarioDAO;
+import DataAccess.DTO.SOUsuarioDTO;
+import DataAccess.SOUsuarioDAO;
 import java.util.List;
 
-public class UsuarioBL {
-    private UsuarioDTO usuario;
-    private UsuarioDAO uDAO = new UsuarioDAO();
+public class SOUsuarioBL {
+    private SOUsuarioDTO usuario;
+    private SOUsuarioDAO uDAO = new SOUsuarioDAO();
 
-    public UsuarioBL(){}
+    public SOUsuarioBL(){}
 
-    public List<UsuarioDTO> getAll() throws Exception{
-        List<UsuarioDTO> lst = uDAO.readAll();
-        for (UsuarioDTO usuarioDTO : lst) 
+    public List<SOUsuarioDTO> getAll() throws Exception{
+        List<SOUsuarioDTO> lst = uDAO.readAll();
+        for (SOUsuarioDTO usuarioDTO : lst) 
             usuarioDTO.setUsuario(usuarioDTO.getUsuario());
         return lst;
     }
-    public UsuarioDTO getBy(int idUsuario) throws Exception{
+    public SOUsuarioDTO getBy(int idUsuario) throws Exception{
         usuario = uDAO.readBy(idUsuario);
         return usuario;
     }
-    public boolean add(UsuarioDTO usuarioDTO) throws Exception{   
+    public boolean add(SOUsuarioDTO usuarioDTO) throws Exception{   
         return uDAO.create(usuarioDTO);
     }
-    public boolean update(UsuarioDTO usuarioDTO) throws Exception{
+    public boolean update(SOUsuarioDTO usuarioDTO) throws Exception{
         return uDAO.update(usuarioDTO);
     }
     public boolean delete(int idUsuario) throws Exception{
@@ -34,7 +34,7 @@ public class UsuarioBL {
     }
 
     public int getIdUsuarioByUserAndPassword(String usuario, String clave) throws Exception {
-        UsuarioDTO usuarioDTO = uDAO.readByUserAndPassword(usuario, clave);
+        SOUsuarioDTO usuarioDTO = uDAO.readByUserAndPassword(usuario, clave);
         if (usuarioDTO != null) {
             return usuarioDTO.getIdUsuario();
         } else {

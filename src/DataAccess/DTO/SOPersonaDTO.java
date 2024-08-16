@@ -1,6 +1,6 @@
 package DataAccess.DTO;
 
-public class PersonaDTO {
+public class SOPersonaDTO {
     private Integer   IdPersona             ;           
     private String    Nombre                ;           
     private String    Apellido              ;          
@@ -11,9 +11,9 @@ public class PersonaDTO {
     private String    fechaCreacion         ;            
     private String    fechaModifica         ;
     
-    public PersonaDTO(){}
+    public SOPersonaDTO(){}
     
-    public PersonaDTO(Integer idPersona, String nombre, String apellido, String correo, Integer idCatalogoSexo, 
+    public SOPersonaDTO(Integer idPersona, String nombre, String apellido, String correo, Integer idCatalogoSexo, 
                       Integer idLocalidad, String estado, String fechaCreacion,String fechaModifica) {
         this.IdPersona              = idPersona;
         this.Nombre                 = nombre;

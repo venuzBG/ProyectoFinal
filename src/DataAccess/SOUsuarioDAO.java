@@ -1,6 +1,6 @@
 package DataAccess;
 
-import DataAccess.DTO.UsuarioDTO;
+import DataAccess.DTO.SOUsuarioDTO;
 import Framework.PatException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,11 +12,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuarioDAO extends SQLiteDataHelper implements IDAO<UsuarioDTO> {
+public class SOUsuarioDAO extends SQLiteDataHelper implements IDAO<SOUsuarioDTO> {
 
     @Override
-    public UsuarioDTO readBy(Integer id) throws Exception {
-        UsuarioDTO u = new UsuarioDTO();
+    public SOUsuarioDTO readBy(Integer id) throws Exception {
+        SOUsuarioDTO u = new SOUsuarioDTO();
         String query =
          "SELECT IdUsuario"
          + " , Usuario"
@@ -24,7 +24,7 @@ public class UsuarioDAO extends SQLiteDataHelper implements IDAO<UsuarioDTO> {
          + " , Estado"
          + " , FechaCreacion"
          + " , FechaModifica"
-         + " FROM Persona"
+         + " FROM SOPersona"
          + " WHERE Estado = 'A'" + id.toString();
         
          try {
@@ -32,7 +32,7 @@ public class UsuarioDAO extends SQLiteDataHelper implements IDAO<UsuarioDTO> {
             Statement  stmt = conn.createStatement();   //CRUD: Select *
             ResultSet rs = stmt.executeQuery(query);  //ejecutar la
             while (rs.next()) { 
-                u = new UsuarioDTO(rs.getInt(1) 
+                u = new SOUsuarioDTO(rs.getInt(1) 
                                    ,rs.getString(2)  //Usuario
                                    ,rs.getString(3)  //clave
                                    ,rs.getString(8)  //estado
@@ -47,8 +47,8 @@ public class UsuarioDAO extends SQLiteDataHelper implements IDAO<UsuarioDTO> {
     }
 
     @Override
-    public boolean create(UsuarioDTO entity) throws Exception {
-        String query = " INSERT INTO Usuario (Usuario,Clave) VALUES (?,?)";
+    public boolean create(SOUsuarioDTO entity) throws Exception {
+        String query = " INSERT INTO SOUsuario (Usuario,Clave) VALUES (?,?)";
         try {
             Connection        conn  = openConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -63,8 +63,8 @@ public class UsuarioDAO extends SQLiteDataHelper implements IDAO<UsuarioDTO> {
     }
 
     @Override
-    public List<UsuarioDTO> readAll() throws Exception {
-        List <UsuarioDTO> lts = new ArrayList<>();
+    public List<SOUsuarioDTO> readAll() throws Exception {
+        List <SOUsuarioDTO> lts = new ArrayList<>();
         String query = 
         "SELECT IdUsuario"
          + " , Usuario"
@@ -72,14 +72,14 @@ public class UsuarioDAO extends SQLiteDataHelper implements IDAO<UsuarioDTO> {
          + " , Estado"
          + " , FechaCreacion"
          + " , FechaModifica"
-         + " FROM Usuario"
+         + " FROM SOUsuario"
          + " WHERE Estado = 'A'";
         try {
             Connection conn = openConnection();     //conectar a BD
             Statement  stmt = conn.createStatement();   //CRUD: Select *
             ResultSet rs = stmt.executeQuery(query);  //ejecutar la
             while (rs.next()) { 
-                UsuarioDTO s = new UsuarioDTO(  rs.getInt(1) 
+                SOUsuarioDTO s = new SOUsuarioDTO(  rs.getInt(1) 
                                                 ,rs.getString(2)   //Usuario
                                                 ,rs.getString(3)   //Clave
                                                 ,rs.getString(4)   //Estado
@@ -96,10 +96,10 @@ public class UsuarioDAO extends SQLiteDataHelper implements IDAO<UsuarioDTO> {
     }
 
     @Override
-    public boolean update(UsuarioDTO entity) throws Exception {
+    public boolean update(SOUsuarioDTO entity) throws Exception {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        String query = "UPDATE Usuario SET Usuario = ?,Clave=?,FechaModifica = ? WHERE IdUsuario = ?";
+        String query = "UPDATE SOUsuario SET Usuario = ?,Clave=?,FechaModifica = ? WHERE IdUsuario = ?";
         try {
             Connection conn = openConnection();     //conectar a BD
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -116,7 +116,7 @@ public class UsuarioDAO extends SQLiteDataHelper implements IDAO<UsuarioDTO> {
 
     @Override
     public boolean delete(int id) throws Exception {
-        String query = " UPDATE Catalogo SET Estado = ? WHERE IdUsuario = ?";
+        String query = " UPDATE SOCatalogo SET Estado = ? WHERE IdUsuario = ?";
         try {
             Connection          conn = openConnection();
             PreparedStatement  pstmt = conn.prepareStatement(query);
@@ -132,7 +132,7 @@ public class UsuarioDAO extends SQLiteDataHelper implements IDAO<UsuarioDTO> {
 
     public Integer getRowCount()  throws Exception  {
         String query =" SELECT COUNT(*) TotalReg "
-                     +" FROM    Usuario          "
+                     +" FROM    SOUsuario          "
                      +" WHERE   Estado ='A'      ";
         try {
             Connection conn = openConnection();             
@@ -148,8 +148,8 @@ public class UsuarioDAO extends SQLiteDataHelper implements IDAO<UsuarioDTO> {
         return 0;
     }
 
-    public UsuarioDTO readByUserAndPassword(String usuario, String clave) throws Exception {
-        UsuarioDTO u = new UsuarioDTO();
+    public SOUsuarioDTO readByUserAndPassword(String usuario, String clave) throws Exception {
+        SOUsuarioDTO u = new SOUsuarioDTO();
         String query = 
             "SELECT IdUsuario"
             + " , Usuario"
@@ -157,7 +157,7 @@ public class UsuarioDAO extends SQLiteDataHelper implements IDAO<UsuarioDTO> {
             + " , Estado"
             + " , FechaCreacion"
             + " , FechaModifica"
-            + " FROM Usuario"
+            + " FROM SOUsuario"
             + " WHERE Usuario = ? AND Clave = ? AND Estado = 'A'";
     
         try {
@@ -167,7 +167,7 @@ public class UsuarioDAO extends SQLiteDataHelper implements IDAO<UsuarioDTO> {
             pstmt.setString(2, clave);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                u = new UsuarioDTO(rs.getInt(1), 
+                u = new SOUsuarioDTO(rs.getInt(1), 
                                    rs.getString(2),  
                                    rs.getString(3),  
                                    rs.getString(4),  

@@ -1,6 +1,6 @@
 package UserInterface.Form;
 
-import BusinessLogic.Entities.Usuario;
+import BusinessLogic.Entities.SOUsuario;
 import UserInterface.CustomerControl.SOButton;
 import UserInterface.CustomerControl.SOJComboBox;
 import UserInterface.CustomerControl.SOJLabel; // Importa la nueva clase
@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RegistrarDatos extends JPanel {
+public class SORegistrarDatos extends JPanel {
     private SOJTextField nombreField;
     private SOJTextField apellidoField;
     private SOJTextField correoField;
@@ -22,7 +22,7 @@ public class RegistrarDatos extends JPanel {
     private SOJComboBox<String> sexoComboBox;
     private boolean registroCorrecto = false;
 
-    public RegistrarDatos() {
+    public SORegistrarDatos() {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -159,10 +159,10 @@ public class RegistrarDatos extends JPanel {
                 int idCiudad = mapCiudadToId((String) ciudadComboBox.getSelectedItem());
 
                 // Crear una instancia de la clase Usuario para registrar los datos
-                Usuario usuario = new Usuario();
+                SOUsuario usuario = new SOUsuario();
 
                 // Registrar la persona
-                boolean personaRegistrada = usuario.registrarPersona(
+                boolean personaRegistrada = usuario.soregistrarPersona(
                         nombreField.getText().trim(),
                         apellidoField.getText().trim(),
                         correoField.getText().trim(),
@@ -176,7 +176,7 @@ public class RegistrarDatos extends JPanel {
                 }
 
                 // Registrar el usuario
-                boolean usuarioRegistrado = usuario.registrarUsuario(
+                boolean usuarioRegistrado = usuario.soregistrarUsuario(
                         usuarioField.getText().trim(),
                         clave);
 
