@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="nzJRSNeg6fx5WKvBo9f4" name="Page-1">
-        <mxGraphModel dx="2559" dy="492" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="4031" dy="1334" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -309,7 +309,7 @@
                     <mxGeometry y="60" width="160" height="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="257" value="&lt;div style=&quot;color: rgb(184, 205, 254); background-color: rgb(13, 14, 21); font-family: &amp;quot;FiraCode Nerd Font Mono&amp;quot;, Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px;&quot;&gt;&lt;div&gt;&lt;span style=&quot;color: #627af4;font-style: italic;&quot;&gt;Autor : VenuzBG&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: #627af4;font-style: italic;&quot;&gt;Fecha : 14.julio.2O24&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="-830" y="490" width="200" height="50" as="geometry"/>
+                    <mxGeometry x="-1020" y="300" width="200" height="50" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
